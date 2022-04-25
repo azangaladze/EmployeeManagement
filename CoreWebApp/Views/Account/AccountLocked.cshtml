@@ -1,0 +1,11 @@
+﻿@{
+    var date = ViewBag.Date;
+}
+
+<br/>
+<h3 class="text-danger">
+    Your account is locked, please try again in @date minutes or you may
+    <a asp-action="ForgotPassword" asp-controller="Account">
+        reset your password by clicking here
+    </a>
+</h3>

@@ -1,0 +1,68 @@
+﻿@model HomeDetailsViewModel
+
+@{
+    ViewBag.Title = "Employee Details";
+    var photoPath = "~/images/" + (@Model.Employee.PhotoPath ?? "noimage.png");
+}
+
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.Name</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+                <h4>Employee ID : @Model.Employee.Id</h4>
+                <h4>Email : @Model.Employee.Email</h4>
+                <h4>Department: @Model.Employee.Department</h4>
+            </div>
+            <div class="card-footer text-center">
+                <form method="post">
+                    <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
+                    <a asp-action="Edit" asp-controller"home"
+                       asp-route-id="@Model.Employee.Id" class="btn btn-primary">Edit</a>
+                    <a class="btn btn-danger" onclick="ConfirmDeleteShow()">Delete</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Employee</h4>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure you want to Remove Employee @Model.Employee.Name?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-info" data-dismiss="modal">Cancel</a>
+
+                <form method="post">
+                    <button asp-action="Delete" type="submit" asp-action="index" class="btn btn-success"
+                            asp-route-id="@Model.Employee.Id" onclick="ConfirmDeleteHide()" style="width:auto">
+                        Confirm
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+<script>
+    function ConfirmDeleteShow() {
+                $("#myModal").modal('show');
+            }
+
+    function ConfirmDeleteHide() {
+                  $("#myModal").modal('hide');
+            }
+</script>
+}
