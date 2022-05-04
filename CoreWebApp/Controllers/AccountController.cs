@@ -118,22 +118,19 @@ namespace CoreWebApp.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult>
-            ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             returnUrl ??= Url.Content("~/");
 
             LoginViewModel loginViewModel = new()
             {
                 ReturnUrl = returnUrl,
-                ExternalLogins =
-                        (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+                ExternalLogins =(await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
             };
 
             if (remoteError != null)
             {
-                ModelState
-                    .AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
 
                 return View("Login", loginViewModel);
             }
@@ -281,7 +278,6 @@ namespace CoreWebApp.Controllers
 
 
         [AcceptVerbs("Get", "Post")]
-
         public async Task<IActionResult> IsEmailInUse(string email)
         {
             var user = await userManager.FindByEmailAsync(email);

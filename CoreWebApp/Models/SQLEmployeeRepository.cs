@@ -1,5 +1,7 @@
-﻿using CoreWebApp.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CoreWebApp.Data;
+using CoreWebApp.Interfaces;
 
 namespace CoreWebApp.Models
 {
@@ -18,15 +20,15 @@ namespace CoreWebApp.Models
             return employee;
         }
 
-        public Employee Delete(int id)
+        public void Delete(int id)
         {
-            var employee = _context.Employees.Find(id);
-            if (employee != null)
+            var employeeToDelete = _context.Employees.FirstOrDefault(x => x.Id == id);
+            if (employeeToDelete != null)
             {
-                _context.Employees.Remove(employee);
-            _context.SaveChanges();
+                _context.Employees.Remove(employeeToDelete);
+                _context.SaveChanges();
             }
-            return employee;
+
 
         }
 

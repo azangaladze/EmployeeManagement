@@ -1,4 +1,4 @@
-﻿using CoreWebApp.Models;
+﻿using CoreWebApp.Utilities;
 using System.Collections.Generic;
 
 namespace CoreWebApp.ViewModels

@@ -1,4 +1,4 @@
-﻿namespace CoreWebApp.Models
+﻿namespace CoreWebApp.Utilities
 {
     public class UserClaim
     {

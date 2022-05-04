@@ -1,4 +1,5 @@
 using CoreWebApp.Data;
+using CoreWebApp.Interfaces;
 using CoreWebApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

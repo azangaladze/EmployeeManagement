@@ -64,7 +64,8 @@ namespace CoreWebApp.Data
 
             List<ApplicationUser> users = new()
             {
-                 new ApplicationUser {
+                new ApplicationUser
+                {
                     UserName = "admin@test.com",
                     NormalizedUserName = "ADMIN@TEST.COM",
                     Email = "admin@test.com",
@@ -72,7 +73,8 @@ namespace CoreWebApp.Data
                     City = "Tbilisi"
                 },
 
-                new ApplicationUser {
+                new ApplicationUser
+                {
                     UserName = "user@test.com",
                     NormalizedUserName = "USER@TEST.COM",
                     Email = "user@test.com",

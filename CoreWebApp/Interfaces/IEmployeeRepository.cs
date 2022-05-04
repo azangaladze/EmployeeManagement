@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CoreWebApp.Models;
+using System.Collections.Generic;
 
-namespace CoreWebApp.Models
+namespace CoreWebApp.Interfaces
 {
     public interface IEmployeeRepository
     {
@@ -8,7 +9,7 @@ namespace CoreWebApp.Models
         IEnumerable<Employee> GetAll();
         Employee Add(Employee employee);
         Employee Edit(Employee employeeChanges);
-        Employee Delete(int id);
+        void Delete(int id);
 
     }
 }

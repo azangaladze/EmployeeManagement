@@ -1,4 +1,5 @@
 ﻿using CoreWebApp.Helpers;
+using CoreWebApp.Interfaces;
 using CoreWebApp.Models;
 using CoreWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -37,6 +38,8 @@ namespace CoreWebApp.Controllers
             return View(await PaginatedList<Employee>.CreateAsync((IQueryable<Employee>)model, pageNumber ?? 1, pageSize));
         }
 
+
+
         [Route("{id}")]
         [AllowAnonymous]
         public ViewResult Details(int id)
@@ -49,13 +52,11 @@ namespace CoreWebApp.Controllers
                 return View("EmployeeNotFound", id);
             }
 
-            HomeDetailsViewModel homeDetailsViewModel = new()
+            var homeDetailsViewModel = new HomeDetailsViewModel()
             {
                 Employee = employee,
                 PageTitle = "Employee Details"
             };
-
-            _employeeRepository.GetEmployee(1);
 
             ViewBag.PageTitle = "Employee Details";
             return View(homeDetailsViewModel);
@@ -133,12 +134,13 @@ namespace CoreWebApp.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var employee = _employeeRepository.Delete(id);
-            if (employee == null)
+            var employeeToDelete = _employeeRepository.GetEmployee(id);
+            if (employeeToDelete == null)
             {
                 Response.StatusCode = 404;
                 return View("EmployeeNotFound", id);
             }
+            _employeeRepository.Delete(id);
 
             return RedirectToAction("index");
         }

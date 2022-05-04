@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CoreWebApp.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CoreWebApp.Models
@@ -23,14 +24,14 @@ namespace CoreWebApp.Models
             return employee;
         }
 
-        public Employee Delete(int id)
+        public void Delete(int id)
         {
-            var employee = _employeeList.FirstOrDefault(x => x.Id == id);
-            if (employee != null)
+            var employeeToDelete = _employeeList.FirstOrDefault(x => x.Id == id);
+            if (employeeToDelete != null)
             {
-                _employeeList.Remove(employee);
+                _employeeList.Remove(employeeToDelete);
             }
-            return employee;
+
         }
 
         public Employee Edit(Employee employeeChanges)
