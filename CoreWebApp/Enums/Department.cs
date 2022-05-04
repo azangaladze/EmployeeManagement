@@ -1,4 +1,4 @@
-﻿namespace CoreWebApp.Models
+﻿namespace CoreWebApp.Enums
 {
     public enum Department
     {

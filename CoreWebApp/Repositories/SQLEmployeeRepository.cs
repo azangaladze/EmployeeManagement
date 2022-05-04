@@ -2,8 +2,9 @@
 using System.Linq;
 using CoreWebApp.Data;
 using CoreWebApp.Interfaces;
+using CoreWebApp.Models;
 
-namespace CoreWebApp.Models
+namespace CoreWebApp.Repositories
 {
     public class SQLEmployeeRepository : IEmployeeRepository
     {

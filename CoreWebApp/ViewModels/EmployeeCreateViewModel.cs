@@ -1,4 +1,4 @@
-﻿using CoreWebApp.Models;
+﻿using CoreWebApp.Enums;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 

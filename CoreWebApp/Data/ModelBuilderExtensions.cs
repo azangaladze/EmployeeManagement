@@ -1,4 +1,5 @@
-﻿using CoreWebApp.Models;
+﻿using CoreWebApp.Enums;
+using CoreWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

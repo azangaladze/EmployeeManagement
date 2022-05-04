@@ -1,8 +1,10 @@
-﻿using CoreWebApp.Interfaces;
+﻿using CoreWebApp.Enums;
+using CoreWebApp.Interfaces;
+using CoreWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CoreWebApp.Models
+namespace CoreWebApp.Repositories
 {
     public class MockEmployeeRepository : IEmployeeRepository
     {

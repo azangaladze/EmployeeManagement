@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CoreWebApp.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreWebApp.Models
 {
