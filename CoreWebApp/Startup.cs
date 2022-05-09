@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +28,7 @@ namespace CoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("EmployeeDbConnection")));
@@ -49,7 +50,11 @@ namespace CoreWebApp
                 options.AddPolicy("EditRolePolicy", policy => policy.RequireClaim("Edit Role", "true"));
             });
 
-            
+            services.Configure<RouteOptions>(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+            });
 
             services.ConfigureApplicationCookie(options => 
                 options.AccessDeniedPath = new PathString("/Administration/AccessDenied"));

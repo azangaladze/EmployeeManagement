@@ -77,7 +77,7 @@ namespace CoreWebApp.Controllers
             {
                 string uniqueFileName = ProcessUploadedFile(model);
 
-                Employee newEmployee = new()
+                var newEmployee = new Employee()
                 {
                     Name = model.Name,
                     Email = model.Email,

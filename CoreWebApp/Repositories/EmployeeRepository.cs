@@ -6,11 +6,11 @@ using CoreWebApp.Models;
 
 namespace CoreWebApp.Repositories
 {
-    public class SQLEmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly AppDbContext _context;
 
-        public SQLEmployeeRepository(AppDbContext context)
+        public EmployeeRepository(AppDbContext context)
         {
             _context = context;
         }
