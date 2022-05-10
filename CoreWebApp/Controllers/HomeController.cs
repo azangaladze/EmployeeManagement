@@ -30,15 +30,13 @@ namespace CoreWebApp.Controllers
         [Route("~/Home")]
         [Route("~/")]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber, string search)
         {
-
             int pageSize = 3;
-            var model = _employeeRepository.GetAll();
+            var model = _employeeRepository.Search(search);
             return View(await PaginatedList<Employee>.CreateAsync((IQueryable<Employee>)model, pageNumber ?? 1, pageSize));
         }
-
-
+        
 
         [Route("{id}")]
         [AllowAnonymous]

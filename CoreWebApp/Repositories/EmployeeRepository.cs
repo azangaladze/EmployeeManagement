@@ -29,8 +29,6 @@ namespace CoreWebApp.Repositories
                 _context.Employees.Remove(employeeToDelete);
                 _context.SaveChanges();
             }
-
-
         }
 
         public Employee Edit(Employee employeeChanges)
@@ -48,6 +46,17 @@ namespace CoreWebApp.Repositories
         public Employee GetEmployee(int id)
         {
             return _context.Employees.Find(id);
+        }
+
+        public IEnumerable<Employee> Search(string employee)
+        {
+            if (employee == null) 
+            {
+                return _context.Employees;
+            }
+
+            return _context.Employees.Where(x => x.Name.ToLower().Contains(employee) ||
+                                            x.Email.ToLower().Contains(employee.ToLower()));
         }
     }
 }

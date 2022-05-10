@@ -1,4 +1,5 @@
 ﻿using CoreWebApp.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CoreWebApp.Interfaces
@@ -10,6 +11,6 @@ namespace CoreWebApp.Interfaces
         Employee Add(Employee employee);
         Employee Edit(Employee employeeChanges);
         void Delete(int id);
-
+        IEnumerable<Employee> Search(string employee);
     }
 }

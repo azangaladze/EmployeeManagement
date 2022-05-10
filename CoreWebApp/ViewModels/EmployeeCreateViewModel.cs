@@ -10,6 +10,7 @@ namespace CoreWebApp.ViewModels
         [Required]
         public string Name { get; set; }
         [Required]
+        [EmailAddress]
         [Display(Name = "Work Email")]
         public string Email { get; set; }
         [Required]

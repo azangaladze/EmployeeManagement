@@ -57,5 +57,10 @@ namespace CoreWebApp.Repositories
         {
             return _employeeList.FirstOrDefault(x => x.Id == id);
         }
+
+        public IEnumerable<Employee> Search(string employee)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

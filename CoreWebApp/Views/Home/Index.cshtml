@@ -1,12 +1,32 @@
 ﻿@using CoreWebApp.Helpers
 
-
 @model PaginatedList<Employee>
 
 @{
     ViewBag.Title = "Employee List";
 
 }
+<br />
+<form method="get" asp-controller="home" asp-action="Index">
+
+    <div class="input-group">
+        @*<input class="form-control" placeholder="Search by Name or Email...">*@
+        @Html.TextBox("search")
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+
+    </div>
+</form>
+
+
+@*@using (@Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+    <b>Search By:</b>
+
+    @Html.TextBox("search") <input type="submit" value="search" />
+    }*@
+
 
 <div class="card-deck">
     @foreach (var emp in Model)
@@ -28,6 +48,8 @@
 
 </div>
 
+
+
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
@@ -43,3 +65,6 @@
    class="btn btn-info @nextDisabled" style="width:auto">
     Next
 </a>
+
+
+
