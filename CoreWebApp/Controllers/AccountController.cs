@@ -264,10 +264,7 @@ namespace CoreWebApp.Controllers
                 var user = await userManager.FindByEmailAsync(model.Email);
                 if (result.IsLockedOut)
                 {
-                    var lockDate = await userManager.GetLockoutEndDateAsync(user);
-                    var remainingTime = lockDate.Value - DateTime.UtcNow;
-                    
-                    ViewBag.Date = remainingTime.Minutes;
+                    ViewBag.User = user;
                     return View("AccountLocked");
                 }
 

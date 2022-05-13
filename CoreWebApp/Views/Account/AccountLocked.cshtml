@@ -1,11 +1,53 @@
-﻿@{
-    var date = ViewBag.Date;
+﻿@inject UserManager<ApplicationUser> userManager;
+
+@{
+    var user = ViewBag.User;
+    var lockDate = await userManager.GetLockoutEndDateAsync(user);
+    var remainingTime = lockDate - DateTime.UtcNow;
+    var minutes = remainingTime.Minutes + 1;
 }
 
-<br/>
+@Html.Hidden("RedirectTo", Url.Action("Login", "Account"))
+<br />
 <h3 class="text-danger">
-    Your account is locked, please try again in @date minutes or you may
+    Your account is locked, please try again in <span id="countdown"></span> or you may
     <a asp-action="ForgotPassword" asp-controller="Account">
         reset your password by clicking here
     </a>
 </h3>
+
+@section Scripts
+    {
+    <script>
+        var start = new Date();
+        var end = new Date();
+        end.setTime(start.getTime() + (@minutes * 60 * 1000));
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+
+        var timer;
+        function showRemaining() {
+
+            var now = new Date();
+            var remaining = end - now;
+
+
+            var minutes = Math.floor((remaining % _hour) / _minute);
+            var seconds = Math.floor((remaining % _minute) / _second);
+
+            document.getElementById('countdown').innerHTML = minutes + ' minutes ';
+            var textNode = document.createTextNode(seconds + ' seconds');
+            document.getElementById('countdown').appendChild(textNode);
+
+
+            if (minutes == 0 & seconds == 0) {
+                var url = $("#RedirectTo").val();
+                location.href = url;
+            }
+
+        }
+        timer = setInterval(showRemaining, 1000);
+    </script>
+}

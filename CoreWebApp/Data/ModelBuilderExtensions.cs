@@ -71,7 +71,9 @@ namespace CoreWebApp.Data
                     NormalizedUserName = "ADMIN@TEST.COM",
                     Email = "admin@test.com",
                     NormalizedEmail = "ADMIN@TEST.COM",
-                    City = "Tbilisi"
+                    City = "Tbilisi",
+                    LockoutEnabled = true
+                    
                 },
 
                 new ApplicationUser
@@ -80,6 +82,7 @@ namespace CoreWebApp.Data
                     NormalizedUserName = "USER@TEST.COM",
                     Email = "user@test.com",
                     NormalizedEmail = "USER@TEST.COM",
+                    LockoutEnabled = true
                 },
             };
 

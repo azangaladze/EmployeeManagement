@@ -58,9 +58,6 @@ namespace CoreWebApp
 
             services.ConfigureApplicationCookie(options => 
                 options.AccessDeniedPath = new PathString("/Administration/AccessDenied"));
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +71,12 @@ namespace CoreWebApp
             {
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+                context.Database.Migrate();
             }
 
             app.UseRouting();
