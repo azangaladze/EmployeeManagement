@@ -10,22 +10,13 @@
 <form method="get" asp-controller="home" asp-action="Index">
 
     <div class="input-group">
-        @*<input class="form-control" placeholder="Search by Name or Email...">*@
-        @Html.TextBox("search")
+        <input class="form-control" name="search" placeholder="Search by Name or Email...">
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
-
     </div>
 </form>
 
-
-@*@using (@Html.BeginForm("Index", "Home", FormMethod.Get))
-    {
-    <b>Search By:</b>
-
-    @Html.TextBox("search") <input type="submit" value="search" />
-    }*@
 
 
 <div class="card-deck">
