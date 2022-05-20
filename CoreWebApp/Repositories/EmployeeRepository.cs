@@ -48,7 +48,7 @@ namespace CoreWebApp.Repositories
             return _context.Employees.Find(id);
         }
 
-        public IEnumerable<Employee> Search(string employee)
+        public IQueryable<Employee> Search(string employee)
         {
             if (employee == null) 
             {
@@ -56,7 +56,7 @@ namespace CoreWebApp.Repositories
             }
 
             return _context.Employees.Where(x => x.Name.ToLower().Contains(employee) ||
-                                            x.Email.ToLower().Contains(employee.ToLower()));
+                                            x.Email.ToLower().Contains(employee.ToLower())).AsQueryable();
         }
     }
 }

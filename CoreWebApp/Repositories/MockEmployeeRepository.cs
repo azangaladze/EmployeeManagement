@@ -3,6 +3,7 @@ using CoreWebApp.Interfaces;
 using CoreWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreWebApp.Repositories
 {
@@ -58,9 +59,15 @@ namespace CoreWebApp.Repositories
             return _employeeList.FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<Employee> Search(string employee)
+        public IQueryable<Employee> Search(string employee)
         {
-            throw new System.NotImplementedException();
+            if (employee == null)
+            {
+                return _employeeList.AsQueryable();
+            }
+
+            return _employeeList.Where(x => x.Name.ToLower().Contains(employee) ||
+                                        x.Email.ToLower().Contains(employee.ToLower())).AsQueryable();
         }
     }
 }

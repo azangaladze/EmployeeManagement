@@ -17,24 +17,24 @@ namespace CoreWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
         public HomeController(IEmployeeRepository employeeRepository,
                                 IWebHostEnvironment hostingEnvironment)
         {
             _employeeRepository = employeeRepository;
-            this.hostingEnvironment = hostingEnvironment;
+            _hostingEnvironment = hostingEnvironment;
         }
 
 
         [Route("~/Home")]
         [Route("~/")]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(int? pageNumber, string search)
+        public IActionResult Index(int? pageNumber, string search)
         {
             int pageSize = 3;
             var model = _employeeRepository.Search(search);
-            return View(await PaginatedList<Employee>.CreateAsync((IQueryable<Employee>)model, pageNumber ?? 1, pageSize));
+            return View(PaginatedList<Employee>.Create(model, pageNumber ?? 1, pageSize));
         }
         
 
@@ -117,7 +117,7 @@ namespace CoreWebApp.Controllers
                 {
                     if (model.ExistingPhotoPath != null)
                     {
-                        var filePath = Path.Combine(hostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
+                        var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
                         System.IO.File.Delete(filePath);
                     }
                     employee.PhotoPath = ProcessUploadedFile(model);
@@ -149,7 +149,7 @@ namespace CoreWebApp.Controllers
             string uniqueFileName = null;
             if (model.Photo != null)
             {
-                var uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
