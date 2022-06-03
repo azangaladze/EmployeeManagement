@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\jquery-validate\localization\**" />
+    <Content Remove="wwwroot\lib\jquery-validate\localization\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-validate\localization\**" />
+    <None Remove="wwwroot\lib\jquery-validate\localization\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
