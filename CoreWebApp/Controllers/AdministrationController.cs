@@ -267,7 +267,7 @@ namespace CoreWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string roleId)
         {
-            ViewBag.RoleId = roleId;
+            ViewData["RoleId"] = roleId;
             var role = await roleManager.FindByIdAsync(roleId);
             if (role == null)
             {
@@ -409,7 +409,7 @@ namespace CoreWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string userId)
         {
-            ViewBag.userId = userId;
+            ViewData["userId"] = userId;
 
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
